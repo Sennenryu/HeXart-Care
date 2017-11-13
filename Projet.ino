@@ -1,5 +1,5 @@
 int inputPin = 0;
-int outputPin[10] = {2, 3, 4, 5, 6, 7, 8, 9, 10};
+int outputPin[10] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
 
 void setup() {
     Serial.begin(9600);
