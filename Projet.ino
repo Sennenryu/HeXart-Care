@@ -1,70 +1,83 @@
-#include <VSync.h>
-#include <avr/wdt.h>
-#define Reset_AVR() wdt_enable(WDTO_1S);while(1){}
+#include "cardio.h"
 
 int inputPin = 0;
-int outputPin[10] = {2, 3, 4, 5, 6, 7, 8, 9, 10};
-int analog = 0;
-//int time_send = 0;
+int outputPin[10] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+int x = 0;
+unsigned int timeVar = 0;
+int nbBeat = 0;
+int pulse = -1;
+int beat_value = 0;
 
-ValueSender<1> sender;
 
 void setup() {
     Serial.begin(9600);
-    sender.observe(analog);
-    //sender.observe(time_send);
-    pinMode(outputPin[0], OUTPUT);
-    /*for(int i = 0; i < 10; i++)
+
+    pinMode(inputPin, INPUT);
+    for(int i = 0; i < 10; i++)
     {
       pinMode(outputPin[i], OUTPUT);
-    }*/
+    }
+
+    x = 0;
 }
 
 void loop() 
-{
-  //time_send = millis();
-  analog = analogRead(inputPin);
+{  
+  Serial.println(analogRead(inputPin));
 
-  sender.sync();
+  ledControl(TYPE, INIT, PAS);
+
+  Serial.print(beat_value);
+  Serial.print(';');
+  Serial.print(millis());
   
-  digitalWrite(outputPin[0], HIGH);
-  delay(500);
-
-  //time_send = millis();
-  analog = analogRead(inputPin);
-
-  sender.sync();
-  
-  digitalWrite(outputPin[0], LOW);
-  delay(500);
-
-  if(millis() > 30000)
-  {
-    Reset_AVR();
-  }
-  
-  
-  /*for(int i = 0; i < 10; i++)
-  {
-    digitalWrite(outputPin[i], HIGH);
-    
-    while(is_heart_beat)
-    {
-      delay(10);
-    }
-
-    digitalWrite(outputPin[i], LOW);
-  }*/
+  pulse = pulse_processing(&timeVar, &nbBeat);
 }
 
-bool is_heart_beat()
+void ledControl(int ofType, int initLed, int nbLed)
 {
-  if(analogRead(inputPin) > 300)
+  if(ofType == 0)
   {
-    return true;
+    if(is_heart_beat(&inputPin, &nbBeat, &beat_value))
+    {
+      for(int i = initLed; i < 10; i += nbLed)
+      {
+        digitalWrite(outputPin[i], HIGH);
+      }
+    }
+    
+    delay(100);
+    
+    for(int i = initLed; i < 10; i += nbLed)
+    {
+      digitalWrite(outputPin[i], LOW);
+    }
   }
-  else
+  else if(ofType == 1)
   {
-    return false;
+    if(is_heart_beat(&inputPin, &nbBeat, &beat_value))
+    {
+        digitalWrite(outputPin[x], HIGH);
+        
+        if(x == 0)
+        {
+            for(int i = 1; i < 10; i++)
+            {
+               digitalWrite(outputPin[i], LOW);
+            }
+        }
+        else
+        {
+          digitalWrite(outputPin[x-1], LOW);
+        }
+         
+        x++;
+    }
+
+    if(x >= 10)
+    {
+      x = 0;
+    }
+    delay(150);
   }
 }
