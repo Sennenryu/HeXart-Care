@@ -1,5 +1,6 @@
 #include "cardio.h"
 
+//global var
 int inputPin = 0;
 int outputPin[10] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
 int x = 0;
@@ -10,10 +11,10 @@ int beat_value = 0;
 
 
 void setup() {
-    Serial.begin(9600);
+    Serial.begin(9600);//set serial
 
-    pinMode(inputPin, INPUT);
-    for(int i = 0; i < 10; i++)
+    pinMode(inputPin, INPUT);//set pin A0 to input
+    for(int i = 0; i < 10; i++)//set digi pin to output
     {
       pinMode(outputPin[i], OUTPUT);
     }
@@ -22,35 +23,34 @@ void setup() {
 }
 
 void loop() 
-{  
-  Serial.println(analogRead(inputPin));
+{ 
+  ledControl(TYPE, INIT, PAS);//launch led fonc
 
-  ledControl(TYPE, INIT, PAS);
-
+  //serial output
   Serial.print(beat_value);
   Serial.print(';');
   Serial.print(millis());
   
-  pulse = pulse_processing(&timeVar, &nbBeat);
+  pulse = pulse_processing(&timeVar, &nbBeat);//compute the pulse
 }
 
 void ledControl(int ofType, int initLed, int nbLed)
 {
   if(ofType == 0)
   {
-    if(is_heart_beat(&inputPin, &nbBeat, &beat_value))
+    if(is_heart_beat(&inputPin, &nbBeat, &beat_value))//check if a beat is detected
     {
       for(int i = initLed; i < 10; i += nbLed)
       {
-        digitalWrite(outputPin[i], HIGH);
+        digitalWrite(outputPin[i], HIGH);//light the leds
       }
     }
     
-    delay(100);
+    delay(100);//wai for the led to light up
     
     for(int i = initLed; i < 10; i += nbLed)
     {
-      digitalWrite(outputPin[i], LOW);
+      digitalWrite(outputPin[i], LOW);//shut led down
     }
   }
   else if(ofType == 1)
