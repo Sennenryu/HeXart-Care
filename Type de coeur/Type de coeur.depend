@@ -1,0 +1,51 @@
+# depslib dependency file v1.0
+1510570901 source:c:\users\alexa\desktop\oui\2\saison 1\dm1\type de coeur\generationcode.c
+	<stdio.h>
+	<stdlib.h>
+	"generationCode.h"
+
+1510570468 source:c:\users\alexa\desktop\oui\2\saison 1\dm1\type de coeur\menu.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+
+1510571692 c:\users\alexa\desktop\oui\2\saison 1\dm1\type de coeur\generationcode.h
+
+1510570821 source:c:\users\alexa\desktop\oui\2\saison 1\dm1\type de coeur\main.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+	"generationCode.h"
+
+1510562317 c:\users\alexa\desktop\oui\2\saison 1\dm1\type de coeur\menu.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+
+1510570587 c:\users\alexa\desktop\oui\2\saison 1\dm1\type de coeur\menu.h
+
+1510562121 c:\users\alexa\desktop\oui\2\saison 1\dm1\type de coeur\generationcode.c
+	<stdio.h>
+	<stdlib.h>
+	"generationCode.h"
+
+1510648078 source:c:\users\alexa\desktop\oui\2\saison 1\projet\type de coeur\main.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+	"generationCode.h"
+
+1510648078 c:\users\alexa\desktop\oui\2\saison 1\projet\type de coeur\menu.h
+
+1510571692 c:\users\alexa\desktop\oui\2\saison 1\projet\type de coeur\generationcode.h
+
+1510648078 source:c:\users\alexa\desktop\oui\2\saison 1\projet\type de coeur\menu.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+
+1510673431 source:c:\users\alexa\desktop\oui\2\saison 1\projet\type de coeur\generationcode.c
+	<stdio.h>
+	<stdlib.h>
+	"generationCode.h"
+
