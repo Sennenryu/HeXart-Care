@@ -16,7 +16,7 @@ bool is_heart_beat(int *pin, int *nbBeat, int *beat_value)//int* pin not usefull
 
 int pulse_processing(unsigned int *last_time, int *nbBeat)
 {
-  int pulse = -1;//-1 = no pulse
+  int pulse = NO_VALUE;
   
   if(time_elapsed(last_time) >= 15)//if 15 sec passed
   {
