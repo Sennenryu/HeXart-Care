@@ -18,16 +18,21 @@ void valeurTemps(stockageDon *don, int j)
 {
     int i, z = 0;
 
-    printf("Veuillez entrer le temps desire en millisecondes : ");  //Entrée du temps en ms
+    printf("Veuillez entrer le temps en millisecondes entre %d et %d: ", don[z].temps, don[j-1].temps);     //Temps en ms
     scanf("%d",&i);
-    printf("\n");
+    while(i < don[z].temps|| i > don[j-1].temps)
+    {
+        printf("Veuillez entrer le temps en millisecondes entre %d et %d: ", don[z].temps, don[j-1].temps);
+        scanf("%d",&i);
+    }
+
 
     while(i>don[z].temps && z <= j)
     {
-        z++;    //Boucle cherchant le temps le plus proche de celui entré
+        z++;    //Boucle cherchant le temps le plus proche de celui entrÃ©
     }
 
-    printf("Pour %d on a %d\n", i, don[z].detectionIR); //Affiche la fréquence en fonction de la ligne du temps trouvée
+    printf("Pour %d on a %d\n", i, don[z].detectionIR); //Affiche la frÃ©quence en fonction de la ligne du temps trouvÃ©e
 }
 
 void plageTemps(stockageDon *don, int j)    //Fais la moyenne sur une plage de temps
@@ -35,14 +40,14 @@ void plageTemps(stockageDon *don, int j)    //Fais la moyenne sur une plage de t
     int h = 0, i = 0, temp = 0, z = 1, y = 1, sous = 0;
     double result = 0;
 
-    printf("Veuillez entrer la premiere borne en millisecondes entre %d et %d: ", don[z-1].temps, don[j-1].temps);    //Première borne
+    printf("Veuillez entrer la premiere borne en millisecondes entre %d et %d: ", don[z-1].temps, don[j-1].temps);    //PremiÃ¨re borne
     scanf("%d",&h);
     while(h < don[z-1].temps|| h > don[j-1].temps)
     {
         printf("Veuillez entrer la premiere borne en millisecondes entre %d et %d: ", don[z-1].temps, don[j-1].temps);
         scanf("%d",&h);
     }
-    printf("Veuillez entrer la seconde borne en millisecondes entre %d et %d: ", don[z-1].temps, don[j-1].temps);     //Deuxième borne
+    printf("Veuillez entrer la seconde borne en millisecondes entre %d et %d: ", don[z-1].temps, don[j-1].temps);     //DeuxiÃ¨me borne
     scanf("%d",&i);
     while(i < don[z-1].temps|| i > don[j-1].temps)
     {
@@ -55,7 +60,7 @@ void plageTemps(stockageDon *don, int j)    //Fais la moyenne sur une plage de t
     {
         temp = h;
         h = i;
-        i = temp;   //Si la première borne est plus grande que la deuxième, inverse les 2
+        i = temp;   //Si la premiÃ¨re borne est plus grande que la deuxiÃ¨me, inverse les 2
     }
 
     while(h > don[z-1].temps && z <= j)
@@ -72,15 +77,15 @@ void plageTemps(stockageDon *don, int j)    //Fais la moyenne sur une plage de t
 
     for(temp = z;temp <= y;temp++)
     {
-        result = result + don[temp].detectionIR;  //Fréquence totale de la première à la deuxième borne
+        result = result + don[temp].detectionIR;  //FrÃ©quence totale de la premiÃ¨re Ã  la deuxiÃ¨me borne
     }
 
-    result = result/sous;     //Moyenne en divisant la fréquence cumulée par le nombre de terme
+    result = result/sous;     //Moyenne en divisant la frÃ©quence cumulÃ©e par le nombre de terme
 
     printf("Pour une plage de %d a %d, on a en moyenne %f\n", don[z-1].temps, don[y-1].temps, result);     //Affichage
 }
 
-void maxTemps(stockageDon *don, int j)  //Cherche le temps avec la plus grande fréquence et avec la plus petite
+void maxTemps(stockageDon *don, int j)  //Cherche le temps avec la plus grande frÃ©quence et avec la plus petite
 {
     int i = 0, z = 0;
 
@@ -88,7 +93,7 @@ void maxTemps(stockageDon *don, int j)  //Cherche le temps avec la plus grande f
     {
         if(don[z].detectionIR > don[i].detectionIR)
         {
-            i = z;  //Compare toutes les valeurs et dès qu'il y en a une plus grande, elle prend la place du maximum
+            i = z;  //Compare toutes les valeurs et dÃ¨s qu'il y en a une plus grande, elle prend la place du maximum
         }
         z++;
     }
@@ -101,7 +106,7 @@ void maxTemps(stockageDon *don, int j)  //Cherche le temps avec la plus grande f
     {
         if(don[z].detectionIR < don[i].detectionIR)
         {
-            i = z; //Compare toutes les valeurs et dès qu'il y en a une plus petite, elle prend la place du minimum
+            i = z; //Compare toutes les valeurs et dÃ¨s qu'il y en a une plus petite, elle prend la place du minimum
         }
         z++;
     }
@@ -119,7 +124,7 @@ void fusion(stockageDon tableau[], int deb1, int fin1, int fin2)
 
     table1 = malloc((fin1-deb1+1)*sizeof(stockageDon));
 
-    //on recopie les éléments du début du tableau
+    //on recopie les Ã©lÃ©ments du dÃ©but du tableau
     for(i=deb1; i<=fin1; i++)
     {
         table1[i-deb1] = tableau[i];
@@ -127,23 +132,23 @@ void fusion(stockageDon tableau[], int deb1, int fin1, int fin2)
 
     for(i=deb1; i<= fin2; i++)
     {
-        if (compt1 == deb2) //c'est que tous les éléments du premier tableau ont été utilisés
+        if (compt1 == deb2) //c'est que tous les Ã©lÃ©ments du premier tableau ont Ã©tÃ© utilisÃ©s
         {
-            break; //tous les éléments ont donc été classés
+            break; //tous les Ã©lÃ©ments ont donc Ã©tÃ© classÃ©s
         }
-        else if (compt2 == (fin2 + 1)) //c'est que tous les éléments du second tableau ont été utilisés
+        else if (compt2 == (fin2 + 1)) //c'est que tous les Ã©lÃ©ments du second tableau ont Ã©tÃ© utilisÃ©s
         {
-            tableau[i] = table1[compt1-deb1]; //on ajoute les éléments restants du premier tableau
+            tableau[i] = table1[compt1-deb1]; //on ajoute les Ã©lÃ©ments restants du premier tableau
             compt1++;
         }
         else if (table1[compt1-deb1].detectionIR<tableau[compt2].detectionIR)
         {
-            tableau[i] = table1[compt1-deb1]; //on ajoute un élément du premier tableau
+            tableau[i] = table1[compt1-deb1]; //on ajoute un Ã©lÃ©ment du premier tableau
             compt1++;
         }
         else
         {
-            tableau[i] = tableau[compt2]; //on ajoute un élément du second tableau
+            tableau[i] = tableau[compt2]; //on ajoute un Ã©lÃ©ment du second tableau
             compt2++;
         }
     }
