@@ -1,6 +1,6 @@
+#include <time.h>
 #include "cardio.h"
 
-//global var
 int inputPin = 0;
 int outputPin[10] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
 int x = 0;
@@ -8,50 +8,58 @@ unsigned int timeVar = 0;
 int nbBeat = 0;
 int pulse = -1;
 int beat_value = 0;
+int delay_simulation = 0;
+
+void simulation();
+void ledControl(int ofType, int initLed, int nbLed);
 
 
 void setup() {
-    Serial.begin(9600);//set serial
+    Serial.begin(9600);
 
-    pinMode(inputPin, INPUT);//set pin A0 to input
-    for(int i = 0; i < 10; i++)//set digi pin to output
+    pinMode(inputPin, INPUT);
+    for(int i = 0; i < 10; i++)
     {
       pinMode(outputPin[i], OUTPUT);
     }
 
+    srand(time(NULL));
+    delay_simulation = (rand()%400)+700;
     x = 0;
 }
 
 void loop() 
-{ 
-  ledControl(TYPE, INIT, PAS);//launch led fonc
+{  
+  //simulation();
+  
+  beat_value = analogRead(inputPin);
+  ledControl(TYPE, INIT, PAS);
+  pulse = pulse_processing(&timeVar, &nbBeat);
 
-  //serial output
-  Serial.print(beat_value);
+  Serial.print(pulse);
   Serial.print(';');
   Serial.print(millis());
-  
-  pulse = pulse_processing(&timeVar, &nbBeat);//compute the pulse
 }
 
 void ledControl(int ofType, int initLed, int nbLed)
-{
+{ 
   if(ofType == 0)
   {
-    if(is_heart_beat(&inputPin, &nbBeat, &beat_value))//check if a beat is detected
+    if(is_heart_beat(&inputPin, &nbBeat, &beat_value))
     {
       for(int i = initLed; i < 10; i += nbLed)
       {
-        digitalWrite(outputPin[i], HIGH);//light the leds
+        digitalWrite(outputPin[i], HIGH);
       }
     }
     
-    delay(100);//wai for the led to light up
+    delay(100);
     
     for(int i = initLed; i < 10; i += nbLed)
     {
-      digitalWrite(outputPin[i], LOW);//shut led down
+      digitalWrite(outputPin[i], LOW);
     }
+    delay(200);
   }
   else if(ofType == 1)
   {
@@ -78,6 +86,15 @@ void ledControl(int ofType, int initLed, int nbLed)
     {
       x = 0;
     }
-    delay(150);
+    delay(200);
   }
 }
+
+void simulation()
+{
+  beat_value = 700;
+  ledControl(TYPE, INIT, PAS);
+  beat_value = 0;
+  delay(delay_simulation);
+}
+
