@@ -10,12 +10,12 @@
 extern "C" {
 #endif
 
-bool is_heart_beat(int* pin, int *nbBeat, int *beat_value);
-int pulse_processing(unsigned int *last_time, int *nbBeat);
-unsigned int time_elapsed(unsigned int last_time);
-unsigned int get_time();
-int get_beat(int *nbBeat);
-void set_time(unsigned int *timeVar);
+bool is_heart_beat(int* pin, int *nbBeat, int *beat_value);//return if pulse is detected
+int pulse_processing(unsigned int *last_time, int *nbBeat);//compute pulse
+unsigned int time_elapsed(unsigned int last_time);//return the elapsed time since last pulse compute
+unsigned int get_time();//return time in sec
+int get_beat(int *nbBeat);//return nb of pulse detected since last checked
+void set_time(unsigned int *timeVar);//set a variable to the current time
 
 #ifdef __cplusplus
 }
