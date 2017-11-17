@@ -7,6 +7,7 @@ int outputPin[10] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
 int x = 0;
 unsigned int timeVar = 0;
 int nbBeat = 0;
+int tmpPulse = 0;
 int pulse = -1;
 int beat_value = 0;
 int delay_simulation = 0;
@@ -38,7 +39,12 @@ void loop()
   
   beat_value = analogRead(inputPin);
   ledControl(TYPE, INIT, PAS);
-  pulse = pulse_processing(&timeVar, &nbBeat);//compute the pulse
+  if(tmpPulse != NO_VALUE)
+  {
+    pulse = tmpPulse;
+  }
+    
+  pulse = tmpPulse;//compute the pulse
 
   /****serial output info****/
   Serial.print(pulse);
