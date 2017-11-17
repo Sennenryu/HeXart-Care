@@ -1,0 +1,88 @@
+# depslib dependency file v1.0
+1510830853 source:c:\users\1747190\desktop\codeblocks\hexart\main.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+	"donnees.h"
+	"actions.h"
+
+1510830140 source:c:\users\1747190\desktop\codeblocks\hexart\actions.c
+	<stdio.h>
+	<stdlib.h>
+	"actions.h"
+	"donnees.h"
+
+1510760323 source:c:\users\1747190\desktop\codeblocks\hexart\donnees.c
+	<stdio.h>
+	<stdlib.h>
+	"donnees.h"
+
+1510821829 source:c:\users\1747190\desktop\codeblocks\hexart\menu.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+
+1510821685 c:\users\1747190\desktop\codeblocks\hexart\menu.h
+	<stdio.h>
+	<stdlib.h>
+
+1510825887 c:\users\1747190\desktop\codeblocks\hexart\donnees.h
+	<stdio.h>
+	<stdlib.h>
+
+1510829911 c:\users\1747190\desktop\codeblocks\hexart\actions.h
+	<stdio.h>
+	<stdlib.h>
+	"donnees.h"
+
+1510652492 c:\users\1747190\desktop\codeblocks\hexart\menu.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+
+1510652423 c:\users\1747190\desktop\codeblocks\hexart\donnees.c
+	<stdio.h>
+	<stdlib.h>
+	"donnees.h"
+
+1510650800 c:\users\1747190\desktop\codeblocks\hexart\actions.c
+	<stdio.h>
+	<stdlib.h>
+	"actions.h"
+
+1510912809 source:c:\users\alexa\desktop\oui\2\saison 1\projet\hexart\actions.c
+	<stdio.h>
+	<stdlib.h>
+	"actions.h"
+	"donnees.h"
+
+1510913135 c:\users\alexa\desktop\oui\2\saison 1\projet\hexart\actions.h
+	<stdio.h>
+	<stdlib.h>
+	"donnees.h"
+
+1510908665 c:\users\alexa\desktop\oui\2\saison 1\projet\hexart\donnees.h
+	<stdio.h>
+	<stdlib.h>
+
+1510911121 source:c:\users\alexa\desktop\oui\2\saison 1\projet\hexart\donnees.c
+	<stdio.h>
+	<stdlib.h>
+	"donnees.h"
+
+1510913085 source:c:\users\alexa\desktop\oui\2\saison 1\projet\hexart\main.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+	"donnees.h"
+	"actions.h"
+
+1510848406 c:\users\alexa\desktop\oui\2\saison 1\projet\hexart\menu.h
+	<stdio.h>
+	<stdlib.h>
+
+1510911770 source:c:\users\alexa\desktop\oui\2\saison 1\projet\hexart\menu.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+
