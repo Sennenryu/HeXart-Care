@@ -8,13 +8,13 @@ int main()
 {
     system("title Traitement de données"); //Nom de le fenêtre
 
-    int j = taille(), menu = 8, i;  //Initialisation des valeurs
+    int j = taille(), menu = 8;  //Initialisation des valeurs
     stockageDon *don, tableauDon[j];
-    don = malloc(sizeof(stockageDon) * j-1);    //Initialisation des tableaux de structures et allocations de mémoires
+    don = malloc(sizeof(stockageDon) * j+1);    //Initialisation des tableaux de structures et allocations de mémoires
 
     stockageDonnees(don);   //Definition de la structure don contenant le contenu du fichier csv
 
-    for (i=0;i<j;i++)
+    for (int i=0;i<j;i++)
     {
         tableauDon[i] = don[i]; //Rempli tableauDon de don, pour sauvegarder
     }
@@ -23,7 +23,7 @@ int main()
 
     while (menu != 7)   //Boucle du menu et selection
     {
-        for (i=0;i<j;i++)
+        for (int i=0;i<j;i++)
         {
             don[i] = tableauDon[i]; //Réaffectation à chaque boucle de don
         }
